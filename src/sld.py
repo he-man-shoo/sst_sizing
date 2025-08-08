@@ -1,7 +1,6 @@
 import math
 from reportlab.lib.pagesizes import letter, A1, landscape
 from reportlab.lib.units import inch, mm
-import PyPDF2
 from reportlab.pdfgen import canvas
 from reportlab.graphics.shapes import *
 from datetime import date
