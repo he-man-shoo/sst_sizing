@@ -58,9 +58,9 @@ dash_app.layout = dbc.Container([
 
   ], fluid=True, style={
     "backgroundImage": "url('https://images.squarespace-cdn.com/content/v1/66e0bdbafbbd3837e98e5b79/bc21a2b7-061e-493f-b4d1-8f67d3396b5f/Back3.png')",  # Path to your image
-    "backgroundSize": "200%",  # Ensure the image covers the entire container
+    "backgroundSize": "250%",  # Ensure the image covers the entire container
     # "backgroundPosition": "center",  # Center the image
-    # "minHeight": "120vh",  # Ensure the container takes the full height of the viewport
+    "minHeight": "300vh",  # Ensure the container takes the full height of the viewport
     # "padding": "20px",  # Add some padding for better layout
     "backgroundRepeat": "no-repeat",  # Prevent the image from repeating
     # "backgroundColor": "rgba(255, 255, 255, 1)" #/* Semi-transparent overlay */
