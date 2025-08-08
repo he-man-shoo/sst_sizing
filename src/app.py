@@ -3,7 +3,6 @@ from PIL import Image
 import dash
 import dash_bootstrap_components as dbc
 from flask import send_file
-import os
 
 # Colors
 prevalon_purple = 'rgb(72,49,120)'
