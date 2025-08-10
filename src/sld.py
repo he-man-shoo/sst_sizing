@@ -7,7 +7,7 @@ from datetime import date
 
 
 
-def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid, 
+def create_SLD(proj_location, proj_name, mv_vol, skid_kVA_at_max_temp, max_sst_per_skid, 
                solar_mw, number_skids_solar, solar_dc_vol, 
                storage_mw, number_skids_storage, storage_dc_vol, 
                dc_load_mw, number_skids_dc_load, load_dc_vol, 
@@ -194,7 +194,7 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
 
         # c.setDash(6, 4)
         c.setLineWidth(2)
-        c.line(x_bot_corner - 728, y_top_corner - 40, x_bot_corner - 728, y_bot_corner + 40)
+        c.line(x_bot_corner - 700, y_top_corner - 40, x_bot_corner - 700, y_bot_corner + 40)
         # c.drawString(x_bot_corner - 1020, y_top_corner - 50, "HERON POWER'S")
         # c.drawString(x_bot_corner - 1020, y_top_corner - 68, "SCOPE")    
         # c.drawString(x_bot_corner - 790, y_top_corner - 50, "BUYER'S SCOPE")
@@ -212,28 +212,28 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
 
         if feeder_block_qty == 0:
 
-            c.setFont("Helvetica-Bold", 14)
+            c.setFont("Helvetica-Bold", 12)
             
-            c.drawString(x + 1520, y+50, "FEEDER #" + str(feeder_number+1) + " TO MEDIUM VOLTAGE BUS")
+            c.drawString(x + 1620, y+50, "FEEDER #" + str(feeder_number+1) + " TO MEDIUM VOLTAGE BUS")
             
-            c.setFont("Helvetica-Oblique", 12)
+            c.setFont("Helvetica-Oblique", 11)
 
-            c.drawString(x + 1520, y+30, "SAME AS FEEDER #" + str(unique_feeder))
+            c.drawString(x + 1620, y+30, "SAME AS FEEDER #" + str(unique_feeder))
 
-            draw_arrow(c, x + 1300, y + 50, x + 1500, y+50, 10, 1)
+            draw_arrow(c, x + 1330, y + 50, x + 1600, y+50, 10, 1)
 
         else:
-            c.setFont("Helvetica-Bold", 14)
+            c.setFont("Helvetica-Bold", 12)
 
-            c.drawString(x + 1520, y+272, "FEEDER #" + str(feeder_number+1) + " TO MEDIUM VOLTAGE BUS")
+            c.drawString(x + 1620, y+272, "FEEDER #" + str(feeder_number+1) + " TO MEDIUM VOLTAGE BUS")
 
             for i in range(feeder_block_qty):
                 # Outer Rectangle
                 c.setDash(6, 4)
                 c.setLineWidth(0.4)
 
-                x = x + (1300 - 150*feeder_block_qty)/(feeder_block_qty+1)
-                c.rect(x, y_feeder, 150, 260)  # (x, y, width, height)
+                x = x + (1500 - 180*feeder_block_qty)/(feeder_block_qty+1)
+                c.rect(x, y_feeder, 180, 260)  # (x, y, width, height)
 
                 c.setDash()
                 c.setLineWidth(0.4)
@@ -243,22 +243,22 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
 
                 x_block = x
 
-                x = x_block + (150 - 20*4)/(4+1)
+                x = x_block + (180 - 20*4)/(4+1)
                 y = y_feeder + 20
 
-                x_mid = x_block + 150/2
+                x_mid = x_block + 180/2
 
-                c.line(x_mid + 20, y + 260, x_mid + 20 + 150 - 20 + (1300 - 150*feeder_block_qty)/(feeder_block_qty+1), y + 260)
+                c.line(x_mid + 20, y + 260, x_mid + 20 + 180 - 20 + (1500 - 180*feeder_block_qty)/(feeder_block_qty+1), y + 260)
 
                 c.setLineWidth(0.8)
 
-                c.rect(x, y + 55, 120, 177)  # (x, y, width, height)
+                c.rect(x - 15, y + 55, 170, 177)  # (x, y, width, height)
 
                 c.setDash()
                 c.setLineWidth(0.4)
             
                 if i == feeder_block_qty - 1:
-                    draw_arrow(c, x_mid + 20 + 150 - 40 + (1300 - 150*feeder_block_qty)/(feeder_block_qty+1), y + 260, 1600, y+260, 10, 2)
+                    draw_arrow(c, 1600, y + 260, 1700, y+260, 10, 2)
                 if i == 0:
                     
                     # Ground
@@ -316,18 +316,18 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
                 y = y - 10
 
                 # MV AC BUS #AC BUS LENGTH = 140
-                c.line(x_mid-55, y + 130, x_mid+55, y + 130)
+                c.line(x_mid-70, y + 130, x_mid+70, y + 130)
 
                 # # Vertical Lines from AC Bus to SSTs
                 for i in range (max_sst_per_skid):
-                    link_center = x_mid-70 + 140/(max_sst_per_skid+1)*(i+1)
+                    link_center = x_mid-100 + 200/(max_sst_per_skid+1)*(i+1)
                     c.line(link_center, y + 110, link_center, y + 130)
                 
                 y = y - 10
 
                 for i in range (max_sst_per_skid):
 
-                    link_center = x_mid-70 + 140/(max_sst_per_skid+1)*(i+1)
+                    link_center = x_mid-100 + 200/(max_sst_per_skid+1)*(i+1)
 
                     # Medium Voltage Transformer
                     c.line(link_center-1, y + 90, link_center-1 , y + 110)
@@ -400,7 +400,7 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
 
 
                 # Battery Blocks
-                x = x_block + 150
+                x = x_block + 180
 
 
     
@@ -410,7 +410,7 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
 
     total_feeder_number = 0
     
-    def add_page(rating, number_skids, dc_voltage, pcs_string, temp_string, feeder_type, total_feeder_number):
+    def add_page(rating, number_skids, dc_voltage, skid_kVA_at_max_temp, mv_vol, pcs_string, temp_string, feeder_type, total_feeder_number):
             
             x_start = 100
             y_start = 1200
@@ -424,7 +424,12 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
             block_qty = number_skids
             block_type = 1
 
-            feeder_qty = math.ceil(block_qty/8)
+            max_feeder_current = 900 #Amps
+            safety_factor = 1.25 # 25%
+
+            max_number_skids_per_feeder = math.floor(max_feeder_current*mv_vol*math.sqrt(3)/skid_kVA_at_max_temp/safety_factor)
+
+            feeder_qty = math.ceil(block_qty/max_number_skids_per_feeder)
 
             feeders = []
 
@@ -457,28 +462,28 @@ def create_SLD(proj_location, proj_name, mv_vol, max_sst_per_skid,
 
             # Aux Feeder
 
-            c.setFont("Helvetica-Bold", 14)
+            c.setFont("Helvetica-Bold", 11)
 
-            c.drawString(x + 1520, y+50, "AUX FEEDER FROM MEDIUM VOLTAGE BUS")
+            c.drawString(x + 1620, y+50, "AUX FEEDER FROM MEDIUM VOLTAGE BUS")
 
-            c.setFont("Helvetica-Oblique", 12)
+            c.setFont("Helvetica-Oblique", 9)
 
-            c.drawString(x + 1520, y+30, "480V AC CONNECTION REQUIRED TO SUPPLY AUX")
+            c.drawString(x + 1620, y+30, "480V AC CONNECTION REQUIRED TO SUPPLY AUX")
             
-            draw_arrow(c, x + 1300, y + 50, x + 1500, y+50, 10, 3)
+            draw_arrow(c, x + 1330, y + 50, x + 1600, y+50, 10, 3)
 
             c.setFont("Helvetica", 14)
     
     if solar_mw > 0:
-        add_page(solar_mw, number_skids_solar, solar_dc_vol, pcs_string, temp_string, "SOLAR", total_feeder_number)
+        add_page(solar_mw, number_skids_solar, solar_dc_vol, skid_kVA_at_max_temp, mv_vol, pcs_string, temp_string, "SOLAR", total_feeder_number)
         c.showPage()  # Finalize the current page and start a new one    
 
     if storage_mw > 0:
-        add_page(storage_mw, number_skids_storage, storage_dc_vol, pcs_string, temp_string, "BATTERY STORAGE", total_feeder_number)
+        add_page(storage_mw, number_skids_storage, storage_dc_vol, skid_kVA_at_max_temp, mv_vol, pcs_string, temp_string, "BATTERY STORAGE", total_feeder_number)
         c.showPage()  # Finalize the current page and start a new one    
 
     if dc_load_mw > 0:
-        add_page(dc_load_mw, number_skids_dc_load, load_dc_vol, pcs_string, temp_string, "DC LOAD", total_feeder_number)
+        add_page(dc_load_mw, number_skids_dc_load, load_dc_vol, skid_kVA_at_max_temp, mv_vol, pcs_string, temp_string, "DC LOAD", total_feeder_number)
 
     c.save()
 
