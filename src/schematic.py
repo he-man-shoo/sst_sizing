@@ -10,7 +10,7 @@ prevalon_gray = 'rgb(99,102,106)'
 
 
 
-def create_schematic(solar_mw, storage_mw, dc_load_mw, number_ssts_solar, number_ssts_storage, mv_vol, 
+def create_schematic(solar_mw, storage_mw, dc_load_mw, kVA_at_max_temp, max_sst_per_skid, number_ssts_solar, number_ssts_storage, mv_vol, 
                      number_ssts_dc_load, number_skids_solar, number_skids_storage, number_skids_dc_load):
     
         fig = go.Figure()
@@ -69,7 +69,7 @@ def create_schematic(solar_mw, storage_mw, dc_load_mw, number_ssts_solar, number
                     # Labels
                     dict(x=1.5, y=8.5, text=f'{solar_mw}MW Solar', showarrow=False, font=dict(size=14)),
                     dict(x=3.5, y=8.75, text=f'{number_ssts_solar} X Heron Links', showarrow=False, font=dict(size=9)),
-                    dict(x=3.5, y=8.25, text=f'{number_skids_solar} X 4.8MVA Skids', showarrow=False, font=dict(size=9)),
+                    dict(x=3.5, y=8.25, text=f'{number_skids_solar} X {kVA_at_max_temp*max_sst_per_skid*0.001:,.1f}MVA Skids', showarrow=False, font=dict(size=9)),
 
                     # Arrows b/w Solar
                     dict(
@@ -90,7 +90,7 @@ def create_schematic(solar_mw, storage_mw, dc_load_mw, number_ssts_solar, number
                     # Labels
                     dict(x=1.5, y=6.5, text=f'{storage_mw}MW BESS', showarrow=False, font=dict(size=14)),
                     dict(x=3.5, y=6.75, text=f'{number_ssts_storage} X Heron Links', showarrow=False, font=dict(size=9)),
-                    dict(x=3.5, y=6.25, text=f'{number_skids_storage} X 4.8MVA Skids', showarrow=False, font=dict(size=9)),
+                    dict(x=3.5, y=6.25, text=f'{number_skids_storage} X {kVA_at_max_temp*max_sst_per_skid*0.001:,.1f}MVA Skids', showarrow=False, font=dict(size=9)),
 
                     # Arrows b/w BESS
                     dict(
@@ -122,7 +122,7 @@ def create_schematic(solar_mw, storage_mw, dc_load_mw, number_ssts_solar, number
                     # Labels
                     dict(x=8.5, y=7.5, text=f'{dc_load_mw}MW DC Load', showarrow=False, font=dict(size=14)),
                     dict(x=6.5, y=7.75, text=f'{number_ssts_dc_load} X Heron Links', showarrow=False, font=dict(size=9)),
-                    dict(x=6.5, y=7.25, text=f'{number_skids_dc_load} X 4.8MVA Skids', showarrow=False, font=dict(size=9)),
+                    dict(x=6.5, y=7.25, text=f'{number_skids_dc_load} X {kVA_at_max_temp*max_sst_per_skid*0.001:,.1f}MVA Skids', showarrow=False, font=dict(size=9)),
 
                     # Arrows b/w DC Load
                     dict(

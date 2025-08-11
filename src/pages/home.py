@@ -294,6 +294,7 @@ def calculate_number_sst(proj_name, proj_location, solar_mw, storage_mw, dc_load
 
             kVA_at_sst = np.sqrt(kW_at_sst**2 + kVAR_at_sst**2)
             return kVA_at_sst
+        
 
         # 1 - Find out how many SSTs are needed for Solar / Storage / DC Load
         number_ssts_solar = int(math.ceil(kVA_at_sst(solar_mw)/kVA_at_max_temp/max_sst_per_skid) * max_sst_per_skid)
@@ -307,7 +308,7 @@ def calculate_number_sst(proj_name, proj_location, solar_mw, storage_mw, dc_load
         number_skids_storage = int(math.ceil(number_ssts_storage/max_sst_per_skid))
         number_skids_dc_load = int(math.ceil(number_ssts_dc_load/max_sst_per_skid))
 
-        schematic_figure = create_schematic(solar_mw, storage_mw, dc_load_mw, number_ssts_solar, number_ssts_storage, mv_vol, 
+        schematic_figure = create_schematic(solar_mw, storage_mw, dc_load_mw, kVA_at_max_temp, max_sst_per_skid, number_ssts_solar, number_ssts_storage, mv_vol, 
                      number_ssts_dc_load, number_skids_solar, number_skids_storage, number_skids_dc_load)
         
         sld_diagram_pdf = '/download/{}'.format(create_SLD(proj_location, proj_name, mv_vol, skid_kVA_at_max_temp, max_sst_per_skid, 

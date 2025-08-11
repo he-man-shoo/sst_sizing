@@ -429,6 +429,9 @@ def create_SLD(proj_location, proj_name, mv_vol, skid_kVA_at_max_temp, max_sst_p
 
             max_number_skids_per_feeder = math.floor(max_feeder_current*mv_vol*math.sqrt(3)/skid_kVA_at_max_temp/safety_factor)
 
+            if max_number_skids_per_feeder > 8:
+                max_number_skids_per_feeder = 8
+
             feeder_qty = math.ceil(block_qty/max_number_skids_per_feeder)
 
             feeders = []
